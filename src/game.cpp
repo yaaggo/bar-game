@@ -46,7 +46,7 @@ bool game_check_col(const player_bar* b, const falling_item* i) {
 
 void game_spawn(game_ctx* c) {
     falling_item i;
-    i.w = 30.0f; i.h = 30.0f;
+    i.w = 80.0f; i.h = 80.0f;
     i.y = (float)HT; 
     i.active = true;
 
@@ -64,7 +64,7 @@ void game_spawn(game_ctx* c) {
     else i.type = TYPE_BLACK;
 
     bool valid_x = false;
-    float safe_dist = c->p.w + 80.0f; 
+    float safe_dist = c->p.w + 50.0f; 
     
     for (int attempts = 0; attempts < 15; attempts++) {
         i.x = (float)(rand() % (int)(WD - i.w));

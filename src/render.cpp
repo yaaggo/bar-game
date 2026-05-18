@@ -11,6 +11,7 @@ static GLuint banana_texture = 0;
 static GLuint pear_texture = 0;
 static GLuint apple_texture = 0;
 static GLuint basket_texture = 0;
+static GLuint heart_texture = 0;
 
 static GLuint load_texture(const char* filename) {
     int width, height, channels;
@@ -42,6 +43,7 @@ void render_init() {
     pear_texture = load_texture("img/pear.png");
     apple_texture = load_texture("img/apple.png");
     basket_texture = load_texture("img/fruit-basket.png");
+    heart_texture = load_texture("img/heart.png");
 }
 
 static void draw_texture(GLuint tex_id, float x, float y, float w, float h) {
@@ -126,10 +128,14 @@ static void render_play(const game_ctx* c) {
     sprintf(s_txt, "SCORE: %d", c->points);
     draw_stroke_text(s_txt, 20.0f, HT - 40.0f, 0.2f, 0.1f, 0.1f, 0.1f, 2.0f);
 
-    char l_txt[64];
-    sprintf(l_txt, "VIDAS: %d", c->lives);
-    float l_width = glutStrokeLength(GLUT_STROKE_ROMAN, (const unsigned char*)l_txt) * 0.2f;
-    draw_stroke_text(l_txt, WD - l_width - 20.0f, HT - 40.0f, 0.2f, 0.8f, 0.1f, 0.1f, 2.0f);
+    // Desenha as vidas como coracoes (tamanho logico 30x30) no canto direito
+    float heart_w = 30.0f;
+    float heart_h = 30.0f;
+    float gap = 5.0f;
+    float start_x = WD - (3 * (heart_w + gap)); 
+    for (int i = 0; i < c->lives; i++) {
+        draw_texture(heart_texture, start_x + i * (heart_w + gap), HT - 40.0f, heart_w, heart_h);
+    }
 
     draw_texture(basket_texture, c->p.x, c->p.y, c->p.w, c->p.h);
 
