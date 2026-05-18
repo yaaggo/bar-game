@@ -121,6 +121,31 @@ static void render_menu(const game_ctx* c) {
 
     // botao play verde gigante
     draw_button("PLAY", 300.0f, 100.0f, 200.0f, 60.0f, 0.2f, 0.8f, 0.2f);
+
+    // --- painel esquerdo: pontuacoes ---
+    draw_stroke_centered("PONTOS", 120.0f, 380.0f, 0.15f, 0.1f, 0.1f, 0.1f, 2.0f);
+    
+    // pera (+10)
+    draw_texture(pear_texture, 50.0f, 315.0f, 40.0f, 40.0f);
+    draw_stroke_text("= 10", 100.0f, 325.0f, 0.12f, 0.1f, 0.1f, 0.1f, 1.5f);
+    
+    // banana (+30)
+    draw_texture(banana_texture, 50.0f, 265.0f, 40.0f, 40.0f);
+    draw_stroke_text("= 30", 100.0f, 275.0f, 0.12f, 0.1f, 0.1f, 0.1f, 1.5f);
+    
+    // maca (+100)
+    draw_texture(apple_texture, 50.0f, 215.0f, 40.0f, 40.0f);
+    draw_stroke_text("= 100", 100.0f, 225.0f, 0.12f, 0.1f, 0.1f, 0.1f, 1.5f);
+    
+    // bomba (derrota)
+    draw_texture(bomb_texture, 50.0f, 165.0f, 40.0f, 40.0f);
+    draw_stroke_text("= MORTE", 100.0f, 175.0f, 0.12f, 0.8f, 0.1f, 0.1f, 1.5f);
+
+    // --- painel direito: controles ---
+    draw_stroke_centered("CONTROLES", WD - 120.0f, 380.0f, 0.15f, 0.1f, 0.1f, 0.1f, 2.0f);
+    draw_stroke_centered("<- -> : MOVER", WD - 120.0f, 325.0f, 0.12f, 0.1f, 0.1f, 0.1f, 1.5f);
+    draw_stroke_centered("SHIFT : DASH", WD - 120.0f, 275.0f, 0.12f, 0.1f, 0.1f, 0.1f, 1.5f);
+    draw_stroke_centered("ESC : SAIR", WD - 120.0f, 225.0f, 0.12f, 0.1f, 0.1f, 0.1f, 1.5f);
 }
 
 static void render_play(const game_ctx* c) {

@@ -11,7 +11,7 @@ void reshape(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0, WD, 0, HT); // mantém proporcao logica, escalando o conteudo responsivamente
+    gluOrtho2D(0, WD, 0, HT); // mantem proporcao logica, escalando o conteudo responsivamente
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     
-    //pega o tamanho do monitor para iniciar o jogo perfeitamente no centro
+    // pega o tamanho do monitor para iniciar o jogo perfeitamente no centro
     int screen_w = GetSystemMetrics(SM_CXSCREEN);
     int screen_h = GetSystemMetrics(SM_CYSCREEN);
     

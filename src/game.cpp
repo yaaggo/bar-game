@@ -176,7 +176,7 @@ void game_click(game_ctx* c, int btn, int st, int x, int y) {
         }
     }
     else if(c->state == STATE_OVER) {
-        // Voltar ao menu
+        // voltar ao menu
         if(lx >= 300 && lx <= 500 && ly >= 200 && ly <= 250) {
             c->state = STATE_MENU;
         }
