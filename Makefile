@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++11
-LDFLAGS = -lfreeglut -lglu32 -lopengl32
+LDFLAGS = -lfreeglut -lglu32 -lopengl32 -lwinmm
 
 SRC = main.cpp src/game.cpp src/render.cpp
 OBJ = $(SRC:.cpp=.o)

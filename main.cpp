@@ -1,5 +1,6 @@
 #include <GL/glut.h>
 #include <windows.h>
+#include <mmsystem.h>
 #include "src/game.h"
 #include "src/render.h"
 
@@ -34,6 +35,7 @@ void update() {
 }
 
 void mouse_click(int btn, int st, int x, int y) {
+    PlaySound(TEXT("audio/click.wav"), NULL, SND_FILENAME | SND_ASYNC);
     game_click(&g_ctx, btn, st, x, y);
 }
 
@@ -76,7 +78,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(WD, HT);
     glutCreateWindow("BAR GAME");
 
-    // suavisacao para as fontes desenhadas por linha ficarem polidas
+    // suavização para as fontes desenhadas por linha ficarem polidas
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
