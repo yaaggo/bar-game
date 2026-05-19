@@ -130,6 +130,7 @@ void game_update(game_ctx* c, float dt, bool shift_pressed) {
         else if(it->y + it->h < 0) {
             it->active = false;
             if(it->type != TYPE_BLACK) {
+                PlaySound(TEXT("audio/vida.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 c->lives--;
                 if(c->lives <= 0) c->state = STATE_OVER;
             }
