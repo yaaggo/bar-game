@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
-#include <mmsystem.h>
+#include "audio.h"
 
 void game_init(game_ctx* c) {
     srand((unsigned)time(0));
@@ -95,6 +95,8 @@ void game_spawn(game_ctx* c) {
 
 void game_update(game_ctx* c, float dt, bool shift_pressed) {
     if(c->state != STATE_PLAY) return;
+    
+    update_audio_loop();
 
     float spd = shift_pressed ? c->p.dash_speed : c->p.speed;
     c->p.x += c->p.dir * spd * dt;
@@ -118,10 +120,10 @@ void game_update(game_ctx* c, float dt, bool shift_pressed) {
         if(game_check_col(&c->p, it)) {
             it->active = false;
             if(it->type == TYPE_BLACK) {
-                PlaySound(TEXT("audio/explosion.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                audio_play_sfx("audio/explosion.wav");
                 c->state = STATE_OVER;
             } else {
-                PlaySound(TEXT("audio/pickupCoin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                audio_play_sfx("audio/pickupCoin.wav");
                 if(it->type == TYPE_WHITE) c->points += 10;
                 else if(it->type == TYPE_YELLOW) c->points += 30;
                 else if(it->type == TYPE_RED) c->points += 100;
@@ -130,7 +132,7 @@ void game_update(game_ctx* c, float dt, bool shift_pressed) {
         else if(it->y + it->h < 0) {
             it->active = false;
             if(it->type != TYPE_BLACK) {
-                PlaySound(TEXT("audio/vida.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                audio_play_sfx("audio/vida.wav");
                 c->lives--;
                 if(c->lives <= 0) c->state = STATE_OVER;
             }
@@ -143,6 +145,8 @@ void game_update(game_ctx* c, float dt, bool shift_pressed) {
 
 void game_click(game_ctx* c, int btn, int st, int x, int y) {
     if(btn != 0 || st != 0) return; 
+
+    audio_play_sfx("audio/click.wav");
 
     // converter resolucao da janela para logica (WDxHT)
     int win_w = glutGet(GLUT_WINDOW_WIDTH);

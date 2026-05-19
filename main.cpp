@@ -1,6 +1,6 @@
 #include <GL/glut.h>
 #include <windows.h>
-#include <mmsystem.h>
+#include "src/audio.h"
 #include "src/game.h"
 #include "src/render.h"
 
@@ -35,7 +35,6 @@ void update() {
 }
 
 void mouse_click(int btn, int st, int x, int y) {
-    PlaySound(TEXT("audio/click.wav"), NULL, SND_FILENAME | SND_ASYNC);
     game_click(&g_ctx, btn, st, x, y);
 }
 
@@ -84,7 +83,7 @@ int main(int argc, char** argv) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     render_init();
-    game_init(&g_ctx);
+    game_init(&g_ctx);     
     time_last = glutGet(GLUT_ELAPSED_TIME);
 
     glutDisplayFunc(display);
@@ -94,7 +93,8 @@ int main(int argc, char** argv) {
     glutKeyboardFunc(key_down);
     glutSpecialFunc(special_key_down);
     glutSpecialUpFunc(special_key_up);
-
+    audio_set_music_volume(0);
+    audio_play_music();   
     glutMainLoop();
 
     return 0;

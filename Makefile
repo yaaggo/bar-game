@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++11
 LDFLAGS = -lfreeglut -lglu32 -lopengl32 -lwinmm
 
-SRC = main.cpp src/game.cpp src/render.cpp
+SRC = main.cpp src/game.cpp src/render.cpp src/audio.cpp
 OBJ = $(SRC:.cpp=.o)
 EXEC = bar_game.exe
 
