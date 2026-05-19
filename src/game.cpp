@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <mmsystem.h>
 
 void game_init(game_ctx* c) {
     srand((unsigned)time(0));
@@ -117,8 +118,10 @@ void game_update(game_ctx* c, float dt, bool shift_pressed) {
         if(game_check_col(&c->p, it)) {
             it->active = false;
             if(it->type == TYPE_BLACK) {
+                PlaySound(TEXT("audio/explosion.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 c->state = STATE_OVER;
             } else {
+                PlaySound(TEXT("audio/pickupCoin.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 if(it->type == TYPE_WHITE) c->points += 10;
                 else if(it->type == TYPE_YELLOW) c->points += 30;
                 else if(it->type == TYPE_RED) c->points += 100;
