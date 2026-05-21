@@ -30,7 +30,7 @@ void audio_play_music() {
 
     char error_buf[128];
 
-    DWORD err = mciSendStringA("open \"audio/musica.wav\" alias bg_music", NULL, 0, NULL);
+    DWORD err = mciSendStringA("open \"audio/lowmusic.wav\" alias bg_music", NULL, 0, NULL);
     if (err != 0) {
         mciGetErrorStringA(err, error_buf, sizeof(error_buf));
         printf("[MCI ERRO ABRIR]: %s\n", error_buf);
